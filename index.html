@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jumia Logistics & Delivery Partner Portal</title>
-    <!-- Google Fonts & FontAwesome for Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Jumia Logistics | Fleet & Rider Partner Portal</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
             --jumia-orange: #F68B1E;
+            --jumia-orange-hover: #e07a14;
             --jumia-dark: #282828;
-            --jumia-gray: #F5F5F7;
-            --jumia-border: #E0E0E0;
-            --success-green: #388E3C;
+            --jumia-darker: #1a1a1a;
+            --bg-light: #F4F5F7;
+            --border-color: #E5E7EB;
+            --success-green: #10B981;
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
         }
 
         * {
@@ -25,299 +28,112 @@
         }
 
         body {
-            background-color: var(--jumia-gray);
+            background-color: var(--bg-light);
             color: var(--jumia-dark);
-            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        /* Header */
+        /* Top Bar & Ticker */
+        .top-ticker {
+            background: var(--jumia-darker);
+            color: #fff;
+            font-size: 0.78rem;
+            text-align: center;
+            padding: 8px 15px;
+            font-weight: 500;
+        }
+
+        .top-ticker span {
+            color: var(--jumia-orange);
+            font-weight: 700;
+        }
+
         header {
             background: #ffffff;
-            border-bottom: 1px solid var(--jumia-border);
+            border-bottom: 1px solid var(--border-color);
             padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
         }
 
         .logo-area {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+        }
+
+        .logo-badge {
+            background: var(--jumia-orange);
+            color: white;
+            font-weight: 800;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            letter-spacing: -0.5px;
         }
 
         .logo-area h1 {
-            font-size: 1.4rem;
+            font-size: 1.25rem;
             color: var(--jumia-dark);
             font-weight: 700;
         }
 
         .logo-area h1 span {
-            color: var(--jumia-orange);
-        }
-
-        .secure-badge {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.85rem;
-            color: var(--success-green);
-            background: #E8F5E9;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-weight: 500;
-        }
-
-        /* Main Container */
-        .container {
-            max-width: 750px;
-            margin: 30px auto;
-            background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
-            border: 1px solid var(--jumia-border);
-        }
-
-        /* Hero Banner inside Card */
-        .hero-banner {
-            background: linear-gradient(135deg, var(--jumia-dark), #424242);
-            color: #ffffff;
-            padding: 30px;
-            text-align: center;
-        }
-
-        .hero-banner h2 {
-            font-size: 1.6rem;
-            margin-bottom: 8px;
-        }
-
-        .hero-banner p {
-            font-size: 0.95rem;
-            color: #ccc;
-        }
-
-        /* Progress Steps */
-        .steps-indicator {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px 30px;
-            background: #fafafa;
-            border-bottom: 1px solid var(--jumia-border);
-        }
-
-        .step {
-            text-align: center;
-            flex: 1;
-            position: relative;
-        }
-
-        .step span {
-            display: inline-block;
-            width: 30px;
-            height: 30px;
-            line-height: 30px;
-            border-radius: 50%;
-            background: #ddd;
-            color: #666;
-            font-weight: 600;
-            font-size: 0.85rem;
-            margin-bottom: 5px;
-            transition: all 0.3s ease;
-        }
-
-        .step p {
-            font-size: 0.75rem;
-            color: #777;
-            font-weight: 500;
-        }
-
-        .step.active span {
-            background: var(--jumia-orange);
-            color: #fff;
-        }
-
-        .step.active p {
-            color: var(--jumia-dark);
-            font-weight: 700;
-        }
-
-        .step.completed span {
-            background: var(--success-green);
-            color: #fff;
-        }
-
-        /* Form Sections */
-        .form-section {
-            padding: 30px;
-            display: none;
-        }
-
-        .form-section.active {
+            font-size: 0.8rem;
             display: block;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--jumia-dark);
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid var(--jumia-border);
-            border-radius: 8px;
-            font-size: 0.95rem;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .form-control:focus {
-            border-color: var(--jumia-orange);
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        /* Vehicle Selector Cards */
-        .vehicle-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .vehicle-card {
-            border: 2px solid var(--jumia-border);
-            border-radius: 8px;
-            padding: 15px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .vehicle-card i {
-            font-size: 1.8rem;
             color: #666;
-            margin-bottom: 8px;
+            font-weight: 400;
         }
 
-        .vehicle-card h4 {
-            font-size: 0.95rem;
-            margin-bottom: 4px;
-        }
-
-        .vehicle-card p {
-            font-size: 0.75rem;
-            color: #666;
-        }
-
-        .vehicle-card.selected {
-            border-color: var(--jumia-orange);
-            background: #FFF8F0;
-        }
-
-        .vehicle-card.selected i {
-            color: var(--jumia-orange);
-        }
-
-        /* Fee Box */
-        .fee-box {
-            background: #FFF8F0;
-            border: 1px dashed var(--jumia-orange);
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 25px;
-        }
-
-        .fee-box h4 {
-            color: var(--jumia-orange);
-            font-size: 1rem;
-            margin-bottom: 8px;
+        .trust-badge-header {
             display: flex;
             align-items: center;
             gap: 8px;
-        }
-
-        .fee-box p {
-            font-size: 0.88rem;
-            color: #555;
-            margin-bottom: 12px;
-        }
-
-        .fee-amount {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--jumia-dark);
-        }
-
-        /* Buttons */
-        .btn-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 30px;
-        }
-
-        .btn {
-            padding: 12px 25px;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
-            transition: opacity 0.2s;
-        }
-
-        .btn-prev {
-            background: #e0e0e0;
-            color: #333;
-        }
-
-        .btn-next, .btn-submit {
-            background: var(--jumia-orange);
-            color: #fff;
-            margin-left: auto;
-        }
-
-        .btn:hover {
-            opacity: 0.9;
-        }
-
-        /* Success screen */
-        .success-screen {
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        .success-screen i {
-            font-size: 4rem;
+            font-size: 0.82rem;
             color: var(--success-green);
-            margin-bottom: 15px;
+            background: #ECFDF5;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 600;
+            border: 1px solid #A7F3D0;
         }
 
-        .success-screen h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
+        /* Main Container */
+        .main-wrapper {
+            max-width: 720px;
+            width: 100%;
+            margin: 30px auto;
+            padding: 0 15px;
         }
 
-        .success-screen p {
-            color: #666;
-            margin-bottom: 20px;
-            font-size: 0.95rem;
+        .card-container {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
         }
 
+        /* Hero Banner */
+        .hero-banner {
+            background: linear-gradient(135deg, var(--jumia-dark), var(--jumia-darker));
+            color: #ffffff;
+            padding: 35px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-banner::after {
+            content: "";
+            position: absolute;
+            right: -20px;
+            bottom: -30px;
+            width: 150px;
+            height: 150px;
+            background: rgba(246, 139, 
         
